@@ -1,0 +1,134 @@
+body{
+    width: 100%;
+    margin:0;
+    padding:0;
+    background-color: #fff;
+}
+
+.botoes{
+    float:left;
+}
+
+#trataLogin{
+    width: 180px;
+    padding:15px;
+    display: block;
+    margin:18% auto;
+    border-radius: 5px;
+    background-color: #ccc;
+    box-shadow: 0px 0px 2px #000;   
+}
+
+#body_menu{    
+    height: 50px;   
+    padding: 10px;
+    display:block;
+    background-color:#20B2AA;
+    box-shadow: 0 1px 3px #000;
+}
+
+#form_index{
+    width:339px;
+    display: block; 
+    margin:14px auto;    
+}
+
+#box-bt-menu{
+    margin:auto;
+    width:413px;
+}
+
+.box_reg{
+    float:left;
+    width:250px;
+    margin:10px;
+    hyphens:auto;
+    padding:20px;
+    display:block;
+    max-height:215px;
+    border-radius:8px;
+    background-color:#D3D3D3;
+    box-shadow:0 1px 3px #000;
+}
+
+.container_box_reg{   
+    width:960px;
+    display: block;
+    margin:15px auto auto auto;
+}
+
+
+.bt_reg{
+    float:right;
+}
+
+#form_cadastro{   
+    width:310px;
+    padding:10px;
+    margin:6% auto;
+    border-radius: 5px;
+    background-color: #ccc;
+    box-shadow: 0 1px 3px #000;
+
+}
+
+#newUser{    
+    width:175px;
+    padding:15px;
+    margin:6% auto;
+    border-radius: 5px;
+    background-color: #ccc;
+    box-shadow: 0 1px 3px #000;
+}
+
+.caixa_entrada_inserir{   
+    width:300px;
+    height:30px;
+    display:block;
+    font-size:15px;
+}
+
+.caixa_desc_inseir{    
+    width:300px;
+    height:100px;
+    display:block;
+}
+
+.caixa_entrada_NU{
+    width:170px;
+    height:30px;
+    display:block;
+    font-size:15px;
+}
+
+#form_edit_cadastro{
+    width: 200px;
+    padding:10px;   
+    display: block;
+    margin:6% auto;
+    border-radius: 5px;
+    background-color: #ccc;
+    box-shadow: 0 1px 3px #000;
+}
+
+#form_edit_cadastro{
+    display: block;
+    width: 180px;
+}
+
+.box_reg_usuario{
+    float:left;
+    width:260px;
+    padding:20px;    
+    display: block;
+    margin:15px 10px;
+    border-radius:8px;
+    background-color: #D3D3D3;
+    box-shadow: 0 1px 3px #000;
+}
+
+.container_reg_usuario{      
+    width:960px;
+    margin: auto; 
+    display: block;
+}
