@@ -16,8 +16,9 @@ $valor = $_GET['valor'];
     $link = mysql_connect("localhost", "root", "");
     $bd = mysql_select_db("banco", $link);
     
-    $query_string = "SELECT * FROM `cadastro` WHERE `nome` LIKE '%$valor%' OR `sobrenome` LIKE '%$valor%' OR `telefone` LIKE '%$valor%' OR `email` LIKE '%$valor%'";
+    $query_string = "SELECT * FROM `cadastro` WHERE `codigo` = '$valor' OR `nome` LIKE '%$valor%' OR `sobrenome` LIKE '%$valor%' OR `telefone` LIKE '%$valor%' OR `email` LIKE '%$valor%'";
     $busca = mysql_query($query_string) or die (mysql_error());
+    
     
     
     echo '<div id="listar" class="container_box_reg">'; 

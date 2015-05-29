@@ -133,16 +133,19 @@ if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
                     loadPageDoc("trataBuscaUsuario.php?valor=" + valor, "buscarUsuario");
                 }
             }
+            function limparDivBuscarUsuario(){
+                document.getElementById("buscarUsuario").innerHTML = "";
+            }
         </script>
 
     </head>
     <body onload="mostraCadastro()">
         <header id="body_menu">            
             <div id="box-bt-menu">
-                <a class="botao" href="#" onclick="loadPageDoc('cadastrar.php', 'listar')">Inserir</a>
-                <a class="botao" href="#" onclick="loadPageDoc('index.php', 'listar')">Listar</a>
-                <a class="botao_composto" href="#" onclick="loadPageDoc('newUser.php', 'listar')">Novo Usuário</a>
-                <a class="botao_composto" href="#" onclick="loadPageDoc('trataDadosListaUsuario.php', 'listar')">Listar Usuários</a>
+                <a class="botao" href="#" onclick="limparDivBuscarUsuario();loadPageDoc('cadastrar.php', 'listar')">Inserir</a>
+                <a class="botao" href="#" onclick="limparDivBuscarUsuario();loadPageDoc('index.php', 'listar')">Listar</a>
+                <a class="botao_composto" href="#" onclick="limparDivBuscarUsuario();loadPageDoc('newUser.php', 'listar')">Novo Usuário</a>
+                <a class="botao_composto" href="#" onclick="limparDivBuscarUsuario();loadPageDoc('trataDadosListaUsuario.php', 'listar')">Listar Usuários</a>
                 <a class="botao" href="trataSaida.php">Sair</a>
             </div>           
             <!-- Menu -->
