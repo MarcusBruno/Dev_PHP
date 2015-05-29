@@ -10,6 +10,11 @@ a{
     color:black;
 }
 
+#loading{
+    margin: auto;
+    padding: 0;
+}
+
 .botao{
     display: block;
     font-family:'Josefin Sans', sans-serif;

@@ -32,7 +32,7 @@ if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         document.getElementById(div).innerHTML = xmlhttp.responseText;
                     } else {
-                        document.getElementById(div).innerHTML = "<img src='ajax-loader.gif'/>";
+                        document.getElementById(div).innerHTML = "<img src='_images/loading.gif' id='loading'/>";
                     }
                 }
                 xmlhttp.open("POST", doc, true);
@@ -125,10 +125,13 @@ if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
                 }
             }
 
-
             function realizaBusca(valor) {
-                confirm(1);
-                loadPageDoc("trataBusca.php?valor=" + valor, "listar");
+                if (valor == "") {
+                    alert("Pesquisa Inválida !");
+                } else {
+                    loadPageDoc("trataBusca.php?valor=" + valor, "listar");
+                    loadPageDoc("trataBuscaUsuario.php?valor=" + valor, "buscarUsuario");
+                }
             }
         </script>
 
@@ -145,14 +148,19 @@ if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
             <!-- Menu -->
             <div id="box-search">
                 <input type="text" id="campoBusca" name="campoBusca">
-              <span id="bt-busca" onclick="realizaBusca(document.getElementById('campoBusca').value)"></span>
+                <span id="bt-busca" onclick="realizaBusca(document.getElementById('campoBusca').value)"></span>
             </div>
         </header>
         <article>
             <section id="listar">
 
             </section>
+            <br>
+            <section id="buscarUsuario">
+
+            </section>
             <!-- Sessão onde será exibido todo o conteúdo, através do Ajax -->
+
         </article>
     </body>        
 </html>
