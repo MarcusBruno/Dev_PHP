@@ -1,80 +1,148 @@
 <?php
 session_start();
-
 if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
     header("Location: login.php");
 }
 ?>
-<!DOCTYPE html>
+<!DOTCYPE html>
 <html>
     <head>
         <title> Tela Inicial</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <script>
-            
-            iniciaAjax();
-            function IniciaAJAX() { //Validação da API AJAX
-//Objeto 
-                var ajax;
-
-                if (window.XMLHttpRequest) {
-                    ajax = new XMLHttpRequest();
-                    ajax.overrideMimeType('text/xml');
-                } else if (window.ActiveXObject) {
-                    ajax = new ActiveXObject("Msxml2.XMLHTTP");
-                    if (!ajax) {
-                        ajax = new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                } else {
-                    alert("Seu navegador não possui suporte a essa aplicação !")
-                }
-                return ajax;
-            }
-            
-            ajax.onreadystatechange = function(){
-                ajax.open('POST', 'index.php', true);
-                
-                ajax.send(null);
-            }
-            
-            
-            ajax.onreadystatechange = function inserirCadastro(){
-               ajax.open('POST', 'cadastrar.php', true);
-                
-               ajax.send(null);
-           }
-        </script>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>  
+        <script src="jquery-2.1.1.js"></script>
+        <!--Função de Mascára-->
+        <script src="jquery.maskedinput.min.js"></script>
+        <!-- Script de Tratamento dos Eventos utilizando Ajax -->
         <script>
+            $(document).ready(function () {
+                $('.phone_with_ddd').mask('(99) 9999-9999');
+            });
 
+            /** Função Ajax **/
+            function loadPageDoc(doc, div) {
+                var xmlhttp;
+                if (window.XMLHttpRequest) {
+                    xmlhttp = new XMLHttpRequest();
+                } else {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById(div).innerHTML = xmlhttp.responseText;
+                    } else {
+                        document.getElementById(div).innerHTML = "<img src='ajax-loader.gif'/>";
+                    }
+                }
+                xmlhttp.open("POST", doc, true);
+                xmlhttp.send();
+            }
+
+            //Função de Tratamento de Novos Cadastros de Pessoas
+            function cadastrarNovaPessoa(pnome, snome, idade, tel, email) {
+                var c = confirm("Você tem certeza ?");
+                if (c == true) {
+                    loadPageDoc("trataDadosInsercao.php?pnome=" + pnome + "&snome=" + snome + "&idade=" + idade + "&tel=" + tel + "&email=" + email + "", "listar");
+                }
+                alert("Cadastrado com Sucesso !");
+                loadPageDoc("index.php", "listar");
+            }
+
+            //Função de Tratamento de Cadastro de Novos Usuários do Sistema
+            function salvarNovoUsu(usuario, senha) {
+                var c = confirm("Você tem certeza ?");
+                if (c == true) {
+                    loadPageDoc("trataDadosNewUser.php?usuario=" + usuario + "&senha=" + senha + "", "listar");
+                }
+                alert("Realziado com Sucesso !")
+                loadPageDoc('trataDadosListaUsuario.php', 'listar');
+            }
+
+            //Editar Cadastro dos Usuarios do Sistema.
+            function realizaAcaoUsu(id) {
+                loadPageDoc("EditarCadastroNU.php?codigo=" + id + "", "listar");
+            }
+
+            //Função de Tratamento para a Edicação dos campos de Login e Senha dos Usuários
+            function confirmarEdicaoUsuario(codigo, usuario, senha) {
+                var r = confirm("Você tem certeza ?");
+                if (r == true) {
+                    loadPageDoc("trataEditNU.php?codigo=" + codigo + "&usuario=" + usuario + "&senha=" + senha + "", "listar");
+                }
+                alert("Alterado com Sucesso !");
+                loadPageDoc('trataDadosListaUsuario.php', 'listar');
+            }
+
+            //** Chamada da Função Ajax para mostrar os cadastrados**//
+            function mostraCadastro() {
+                loadPageDoc("index.php", "listar");
+            }
+
+            /** Edição de Cadastros e Usuários **/
+            ///Editar Cadastros das Pessoas Cadastradas
+            function realizaAcaoCad(id) {
+                loadPageDoc("EditarCadastro.php?codigo=" + id + "", "listar");
+            }
+
+            //Função de Tratamento de Edição das informações dos Cadastrados 
+            function confirmarEdicaoCadastro(codigo, pnome, snome, idade, tel, email) {
+                var c = confirm("Você tem certeza ?");
+                if (c == true) {
+                    loadPageDoc("trataEdit.php?codigo=" + codigo + "&pnome=" + pnome + "&snome=" + snome + "&idade=" + idade + "&tel=" + tel + "&email=" + email + "", "listar");
+                }
+                alert("Alterado com Sucesso !");
+                loadPageDoc("index.php", "listar");
+            }
+
+            /** Botão de Voltar **/
+            //Ação de Voltar
+            function confirmarBack() {
+                var r = confirm("Você tem certeza ?");
+                if (r == true) {
+                    loadPageDoc("index.php", "listar");
+                }
+            }
+
+            /**Exclusão**/
+            // Verifica se o usuário quer realmente excluir o usuario na page Listar Cadastro - Ação de Exclusão - OK
             function validaRota(id) {
                 r = confirm("Você tem certeza ?");
                 if (r == true) {
-                    location.href = "trataDadosExcluir.php?codigo=" + id + "";
-                } else {
-                    location.href = "index.php";
+                    loadPageDoc("trataDadosExcluir.php?codigo=" + id + "", "listar");
+                    alert("Excluido com Sucesso !");
+                    loadPageDoc("index.php", "listar");
                 }
             }
 
+            // Verifica se o usuário quer realmente excluir o usuario na page Listar Usuario - Ação de Exclusão - OK
             function validaRotaNU(id) {
                 r = confirm("Você tem certeza ?");
                 if (r == true) {
-                    location.href = "trataDadosExcluirNU.php?codigo=" + id + "";
+                    loadPageDoc("trataDadosExcluirNU.php?codigo=" + id + "", "listar");
+                    alert("Excluido com Sucesso !");
+                    loadPageDoc("trataDadosListaUsuario.php", "listar");
                 }
             }
         </script>
+
     </head>
-    <body>
-        <header id="body_menu">
-            <form  name="form_index" id="form_index">
-                <div id="box-bt-menu">
-                <button name="Bt1" href="cadastrar.php" class="botoes" formaction="cadastrar.php" formmethod="POST" id="botao1" onclick="inserirCadastro()">Inserir</button>
-                <button value="sim" name="btListar" id="btListar" id="botao2" formmethod="POST" formaction="index.php">Listar</button>
-                <button name="btNU" href="newUser.php" class="botoes"  formmethod="POST" formaction="trataDadosDoNovoU.php" id="botao3">Novo Usuário</button>
-                <button name="btListarU" id="btListarU" class="botoes" formmethod="POST" formaction="trataDadosListaUsuario.php" onclick="listaUsuarios()">Listar Usuários</button>
-                <button name="btSair" id="btSair" class="botoes" formmethod="POST" formaction="trataSaida.php" >Sair</button>
-                </div>
-            </form>
+    <body onload="mostraCadastro()">
+        <header id="body_menu">            
+            <div id="box-bt-menu">
+                <a class="botao" href="#" onclick="loadPageDoc('cadastrar.php', 'listar')">Inserir</a>
+                <a class="botao" href="#" onclick="loadPageDoc('index.php', 'listar')">Listar</a>
+                <a class="botao_composto" href="#" onclick="loadPageDoc('newUser.php', 'listar')">Novo Usuário</a>
+                <a class="botao_composto" href="#" onclick="loadPageDoc('trataDadosListaUsuario.php', 'listar')">Listar Usuários</a>
+                <a class="botao" href="trataSaida.php">Sair</a>
+            </div>           
+            <!-- Menu -->
         </header>
+        <article>
+            <section id="listar">
+
+            </section>
+            <!-- Sessão onde será exibido todo o conteúdo, através do Ajax -->
+        </article>
     </body>        
 </html>

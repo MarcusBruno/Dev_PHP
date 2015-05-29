@@ -18,6 +18,7 @@ if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
             $(document).ready(function () {
                 $('.phone_with_ddd').mask('(99) 9999-9999');
             });
+
         </script>
 
         <?php
@@ -31,29 +32,9 @@ if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
 
         mysql_close($link);
         ?>
-        <script>
-            function confirmar() {
-                r = confirm("Você tem certeza ?");
-                if (r == true) {
-                    location.href = "trataEdit.php";
-                } else {
-                    location.href = "index.php";
-                }
-            }
-            
-            
-            
-            function confirmarBack(){
-                r = confirm("Você tem certeza ?");
-                if (r == true) {
-                    location.href = "index.php";
-                }
-            }
-        </script>
     </head>
     <body>
-        <form id="form_cadastro" method="post" name="form_cadastro" action="trataEdit.php">
-            <input type="hidden" name="insere" value="sim">
+        <form id="form_cadastro" name="form_cadastro">
             <table>
                 <input type='hidden' id="codigo" name="codigo" class="caixa_entrada_inserir" value="<?php echo $reg['codigo']; ?>">
                 <tr>
@@ -82,24 +63,22 @@ if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
                     <td>
                         <label class="label">Telefone</label>
                         <br>
-                        <input type="tel" id="tel" name="tel" class="caixa_entrada_inserir" value="<?php echo $reg['telefone']; ?>" class="phone_with_ddd">
+                        <input type="tel" id="tel" name="tel" class="phone_with_ddd caixa_entrada_inserir" value="<?php echo $reg['telefone']; ?> ">
                     <td>
                 </tr>
                 <tr>
                     <td>
                         <label class="label">Email:</label>
                         <br>   
-                        <input type="email" id="desc" name="email" class="caixa_entrada_inserir" value="<?php echo $reg['email']; ?>" class="phone_with_ddd">
+                        <input type="email" id="email" name="email" class="caixa_entrada_inserir" value="<?php echo $reg['email']; ?>">
 
                     </td>
                 </tr>
-
                 <tr>
                     <td>
                         <br>
-                        <input type="submit" id="enviar" value="Enviar" onclick="confirmar()">
+                        <input type="button" id="enviar" value="Salvar" onclick="confirmarEdicaoCadastro(document.getElementById('codigo').value, document.getElementById('pnome').value, document.getElementById('snome').value, document.getElementById('idade').value, document.getElementById('tel').value, document.getElementById('email').value)">
                         <input type="button" id="back" value="Voltar" onclick="confirmarBack()">
-
                     </td>                
                 </tr>
             </table>

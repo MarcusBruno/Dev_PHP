@@ -1,5 +1,8 @@
 <?php
-include 'menu.php';
+session_start();
+if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
+    header("Location: login.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +21,7 @@ include 'menu.php';
         </script>
     </head>
     <body>
-        <form id="form_cadastro" method="post" name="form_cadastro" action="trataDadosInsercao.php">
+        <form id="form_cadastro" name="form_cadastro">
             <table>
                 <tr>
                     <td>
@@ -59,9 +62,10 @@ include 'menu.php';
                     <td>
                         <br>
                         <div  class="box_bts">
-                            <input type="submit" id="enviar" value="Enviar">
+                            
+                            <input type="submit" value="Cadastrar" onclick="cadastrarNovaPessoa(document.getElementById('pnome').value, document.getElementById('snome').value, document.getElementById('idade').value, document.getElementById('tel').value, document.getElementById('email').value)">
                             <input type="reset" id="limpar" value="Limpar">
-                            <a href="index.php"><input type="button" value="Voltar"></a>
+                            <a href="#" onclick="confirmarBack()"><input type="button" value="Voltar"></a>
                         </div>
                     </td>                
                 </tr>

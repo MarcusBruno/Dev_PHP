@@ -25,7 +25,7 @@ function verificarLogin($usuario, $senha) {
             if ($reg['usuario'] == $usuario AND $reg['senha'] == $senha) {
                 $_SESSION["logado"] = true;
                 $_SESSION["user"] = $usuario;
-                header("Location:index.php");
+                header("Location:menu.php");
             } else {
                 header("Location: login.php");
             }
@@ -35,5 +35,4 @@ function verificarLogin($usuario, $senha) {
     }
     mysql_close($link);
 }
-
 ?>
