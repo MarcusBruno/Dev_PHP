@@ -63,7 +63,7 @@ if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
                         <br>
                         <div  class="box_bts">
                             
-                            <input type="submit" value="Cadastrar" onclick="cadastrarNovaPessoa(document.getElementById('pnome').value, document.getElementById('snome').value, document.getElementById('idade').value, document.getElementById('tel').value, document.getElementById('email').value)">
+                            <input type="button" value="Cadastrar" onclick="cadastrarNovaPessoa(document.getElementById('pnome').value, document.getElementById('snome').value, document.getElementById('idade').value, document.getElementById('tel').value, document.getElementById('email').value)">
                             <input type="reset" id="limpar" value="Limpar">
                             <a href="#" onclick="confirmarBack()"><input type="button" value="Voltar"></a>
                         </div>

@@ -44,8 +44,8 @@ if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
                 var c = confirm("Você tem certeza ?");
                 if (c == true) {
                     loadPageDoc("trataDadosInsercao.php?pnome=" + pnome + "&snome=" + snome + "&idade=" + idade + "&tel=" + tel + "&email=" + email + "", "listar");
+                    alert("Cadastrado com Sucesso !");
                 }
-                alert("Cadastrado com Sucesso !");
                 loadPageDoc("index.php", "listar");
             }
 
@@ -107,7 +107,7 @@ if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
             /**Exclusão**/
             // Verifica se o usuário quer realmente excluir o usuario na page Listar Cadastro - Ação de Exclusão - OK
             function validaRota(id) {
-                r = confirm("Você tem certeza ?");
+                var r = confirm("Você tem certeza ?");
                 if (r == true) {
                     loadPageDoc("trataDadosExcluir.php?codigo=" + id + "", "listar");
                     alert("Excluido com Sucesso !");
@@ -124,6 +124,12 @@ if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
                     loadPageDoc("trataDadosListaUsuario.php", "listar");
                 }
             }
+
+
+            function realizaBusca(valor) {
+                confirm(1);
+                loadPageDoc("trataBusca.php?valor=" + valor, "listar");
+            }
         </script>
 
     </head>
@@ -137,6 +143,10 @@ if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
                 <a class="botao" href="trataSaida.php">Sair</a>
             </div>           
             <!-- Menu -->
+            <div id="box-search">
+                <input type="text" id="campoBusca" name="campoBusca">
+              <span id="bt-busca" onclick="realizaBusca(document.getElementById('campoBusca').value)"></span>
+            </div>
         </header>
         <article>
             <section id="listar">

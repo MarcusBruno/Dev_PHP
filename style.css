@@ -5,6 +5,11 @@ body{
     background-color: #fff;
 }
 
+a{
+    text-decoration: none;
+    color:black;
+}
+
 .botao{
     display: block;
     font-family:'Josefin Sans', sans-serif;
@@ -19,6 +24,19 @@ body{
     float:left;
     box-shadow:  0 1px 3px #000; 
     border-radius:5px;
+}
+
+#botaoEditar{
+    width:24px;
+    height:24px;
+    margin-right:5px;
+    background-image: url("_images/edit.png");
+}
+
+#botaoExcluir{
+    width:19px;
+    height:24px;
+    background-image: url("_images/delete.png");
 }
 
 .botao_composto{
@@ -40,9 +58,42 @@ body{
 
 #box-bt-menu{
     display:block;
-    margin:auto;
+    float: left;
+    margin-left:200px;
     width:465px;
     height:50px;
+}
+
+#box-search{
+    display:block;
+    float:left;
+    margin:0 auto auto 100px;      
+    width:380px;
+    height:50px;
+   
+}
+
+#campoBusca{
+    margin-top: 10px;
+    width:240px;    
+    height: 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 0 3px #000;
+}
+
+#bt-busca{
+    display:inline-block;
+    float:right;
+    margin-right:95px;
+    margin-top:-2px;
+    width:40px;
+    height:40px;
+    background-image:url("_images/search.png");    
+}
+#bt-busca:active{
+    transform: rotate(45deg);
+    transition: 0.3s;
 }
 
 #form_index{

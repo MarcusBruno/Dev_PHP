@@ -13,8 +13,8 @@ echo '<div id="listarUsuario" class="container_reg_usuario">';
 while ($reg = mysql_fetch_array($sql)) {
 
     echo '<div class="box_reg_usuario">';
-    echo '<input type="button" class="bt_reg" onclick="validaRotaNU(' . $reg['codigo'] . ')" value="Delete">';
-    echo '<button class="bt_reg" onclick="realizaAcaoUsu(' . $reg['codigo'] . ')">Editar</button>';
+    echo '<span class="bt_reg" onclick="validaRotaNU(' . $reg['codigo'] . ')" id="botaoExcluir"><a href="#"></a></span>';
+    echo '<span class="bt_reg" onclick="realizaAcaoUsu(' . $reg['codigo'] . ')" id="botaoEditar"><a href="#"></a></span>';      
     echo 'Código: ' . $reg['codigo'];
     echo '<br>';
     echo 'Usuario: ' . $reg['usuario'];
